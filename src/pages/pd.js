@@ -3,6 +3,8 @@ import { useEffect, useState, useCallback } from "react";
 import { axiosClientHandler } from "@/utils/api";
 import { usernameToUserDataMap } from "@/utils/constants";
 
+import { calcRed, calcGreen } from "@/utils/calcColor";
+
 const {
   Box,
   CircularProgress,
@@ -18,6 +20,23 @@ const {
 } = require("@mui/material");
 
 function descendingComparator(a, b, orderBy) {
+  if (typeof a[orderBy] === "object") {
+    if (b[orderBy]["value"] < a[orderBy]["value"]) {
+      return -1;
+    }
+    if (b[orderBy]["value"] > a[orderBy]["value"]) {
+      return 1;
+    }
+    if (b[orderBy]["value"] === a[orderBy]["value"]) {
+      if (b["name"] < a["name"]) {
+        return 1;
+      }
+      if (b["name"] > a["name"]) {
+        return -1;
+      }
+    }
+    return 0;
+  }
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -123,6 +142,10 @@ const PD = () => {
       ...newColumns,
     ]);
 
+    const totalProblem = totalProblemsList.reduce(
+      (total, item) => total + item
+    );
+
     for (const [username, userProgress] of Object.entries(userProgressesMap)) {
       const totalSolved = userProgress.reduce((total, item) => total + item);
       let userProgressData = {};
@@ -130,10 +153,28 @@ const PD = () => {
       userProgressData["username"] = username;
       userProgressData["name"] = usernameToUserDataMap[username].name;
       userProgressData["province"] = usernameToUserDataMap[username].province;
-      userProgressData["totalSolved"] = totalSolved;
+      userProgressData["totalSolved"] = {};
+      userProgressData["totalSolved"]["value"] = totalSolved;
+      userProgressData["totalSolved"]["red"] = calcRed(
+        totalSolved,
+        totalProblem
+      );
+      userProgressData["totalSolved"]["green"] = calcGreen(
+        totalSolved,
+        totalProblem
+      );
 
       for (let i = 0; i < totalProblemsList.length; i++) {
-        userProgressData[i + 1] = userProgress[i];
+        userProgressData[i + 1] = {};
+        userProgressData[i + 1]["value"] = userProgress[i];
+        userProgressData[i + 1]["red"] = calcRed(
+          userProgress[i],
+          totalProblemsList[i]
+        );
+        userProgressData[i + 1]["green"] = calcGreen(
+          userProgress[i],
+          totalProblemsList[i]
+        );
       }
 
       userProgresses.push(userProgressData);
@@ -249,9 +290,17 @@ const PD = () => {
                               <TableCell
                                 key={column.id}
                                 align={column.align ? column.align : "center"}
+                                sx={{
+                                  backgroundColor:
+                                    typeof value === "object"
+                                      ? `rgba(${value.red}, ${value.green}, 0, 0.75)`
+                                      : "white",
+                                }}
                               >
                                 {column.format && typeof value === "number"
                                   ? column.format(value)
+                                  : typeof value === "object"
+                                  ? value.value
                                   : value}
                               </TableCell>
                             );
