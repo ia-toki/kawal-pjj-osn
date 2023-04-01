@@ -4,6 +4,7 @@ import { axiosClientHandler } from "@/utils/api";
 import { usernameToUserDataMap } from "@/utils/constants";
 
 const {
+  Box,
   CircularProgress,
   Paper,
   TableContainer,
@@ -159,22 +160,39 @@ const PD = () => {
 
   return (
     <>
-      <Paper
-        sx={{
-          mb: 2,
-          p: 2,
-          ml: "auto",
-          mr: "auto",
-          width: "90%",
-          textAlign: "center",
-          justifyContent: "center",
-          overflow: "scroll",
-        }}
-      >
-        {loading ? (
-          <CircularProgress color="inherit" />
-        ) : (
-          <>
+      {loading ? (
+        <>
+          <Box
+            sx={{
+              width: "100%",
+              justifyContent: "center",
+              display: "flex",
+              p: 10,
+            }}
+            data-aos="fade-up"
+            data-aos-delay="100"
+            data-aos-duration="1000"
+          >
+            <CircularProgress color="inherit" />
+          </Box>
+        </>
+      ) : (
+        <>
+          <Paper
+            sx={{
+              mb: 2,
+              p: 2,
+              ml: "auto",
+              mr: "auto",
+              width: "90%",
+              textAlign: "center",
+              justifyContent: "center",
+              overflow: "scroll",
+            }}
+            data-aos="fade-up"
+            data-aos-delay="100"
+            data-aos-duration="1000"
+          >
             <TableContainer
               sx={{
                 maxHeight: 440,
@@ -253,9 +271,9 @@ const PD = () => {
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
-          </>
-        )}
-      </Paper>
+          </Paper>
+        </>
+      )}
     </>
   );
 };
