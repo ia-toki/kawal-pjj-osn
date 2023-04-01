@@ -4,8 +4,6 @@ import { axiosClientHandler } from "@/utils/api";
 import { usernameToUserDataMap } from "@/utils/constants";
 
 const {
-  Typography,
-  Box,
   CircularProgress,
   Paper,
   TableContainer,
@@ -52,7 +50,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const PKD = (props) => {
+const PKD = () => {
   const [userProgressesData, setUserProgressesData] = useState([]);
   const [totalProblemsList, setTotalProblemsList] = useState([]);
 
@@ -97,6 +95,8 @@ const PKD = (props) => {
       newColumns.push({
         id: i + 1,
         label: `${i + 1} (${totalProblemsList[i]})`,
+        align: "center",
+        minWidth: 60,
       });
     }
 
@@ -105,15 +105,19 @@ const PKD = (props) => {
         id: "name",
         label: "Nama",
         align: "left",
+        minWidth: 350,
       },
       {
         id: "province",
         label: "Provinsi",
         align: "left",
+        minWidth: 200,
       },
       {
         id: "totalSolved",
         label: "Total Terselesaikan",
+        align: "center",
+        minWidth: 200,
       },
       ...newColumns,
     ]);
@@ -141,7 +145,7 @@ const PKD = (props) => {
   };
 
   useEffect(() => {
-    document.title = "Pemrograman Kompetitif Dasar";
+    document.title = "Pemrograman Dasar";
     fetchPkdScoreboard();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -191,7 +195,11 @@ const PKD = (props) => {
                   </TableRow>
                   <TableRow>
                     {columns.map((column) => (
-                      <TableCell key={column.id} align="center">
+                      <TableCell
+                        key={column.id}
+                        align="center"
+                        style={{ minWidth: column.minWidth }}
+                      >
                         <TableSortLabel
                           active={orderBy === column.id}
                           direction={orderBy === column.id ? order : "asc"}
