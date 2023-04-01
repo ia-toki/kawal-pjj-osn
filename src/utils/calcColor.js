@@ -11,4 +11,13 @@ const calcGreen = (solved, total) => {
   return 5.1 * (solved / (2 * total)) * 100;
 };
 
-export { calcRed, calcGreen };
+const calcColor = (solved, total) => {
+  if (solved == 0) {
+    return "#eee";
+  }
+
+  var hue = (solved * 120.0) / total;
+  return "hsl(" + hue.toString() + ", 80%, 60%)";
+};
+
+export { calcRed, calcGreen, calcColor };

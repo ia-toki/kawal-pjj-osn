@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { axiosClientHandler } from "@/utils/api";
 import { usernameToUserDataMap } from "@/utils/constants";
 
-import { calcRed, calcGreen } from "@/utils/calcColor";
+import { calcColor } from "@/utils/calcColor";
 
 const {
   Box,
@@ -155,11 +155,7 @@ const PKD = () => {
       userProgressData["province"] = usernameToUserDataMap[username].province;
       userProgressData["totalSolved"] = {};
       userProgressData["totalSolved"]["value"] = totalSolved;
-      userProgressData["totalSolved"]["red"] = calcRed(
-        totalSolved,
-        totalProblem
-      );
-      userProgressData["totalSolved"]["green"] = calcGreen(
+      userProgressData["totalSolved"]["color"] = calcColor(
         totalSolved,
         totalProblem
       );
@@ -167,11 +163,7 @@ const PKD = () => {
       for (let i = 0; i < totalProblemsList.length; i++) {
         userProgressData[i + 1] = {};
         userProgressData[i + 1]["value"] = userProgress[i];
-        userProgressData[i + 1]["red"] = calcRed(
-          userProgress[i],
-          totalProblemsList[i]
-        );
-        userProgressData[i + 1]["green"] = calcGreen(
+        userProgressData[i + 1]["color"] = calcColor(
           userProgress[i],
           totalProblemsList[i]
         );
@@ -293,7 +285,7 @@ const PKD = () => {
                                 sx={{
                                   backgroundColor:
                                     typeof value === "object"
-                                      ? `rgba(${value.red}, ${value.green}, 0, 0.75)`
+                                      ? value.color
                                       : "white",
                                 }}
                               >
