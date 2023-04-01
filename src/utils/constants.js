@@ -1,3 +1,5 @@
+const psetSlugs = ["osn-2022", "ksn-2021", "ksn-2020", "osn-2019", "osn-2018"];
+
 const usernames = [
   "nasya_kenzia29",
   "devanriog",
@@ -98,6 +100,7 @@ const usernames = [
   "GoldLight",
   "bipz",
 ];
+
 const usernameToUserDataMap = {
   tut_tut: {
     name: "Hetty Sarlini",
@@ -176,7 +179,7 @@ const usernameToUserDataMap = {
     province: "D. I. Yogyakarta",
   },
   natkeith14: {
-    name: "Nathan Keith Poername",
+    name: "Nathan Keith Poernama",
     province: "DKI Jakarta",
   },
   POTato3141: {
@@ -493,4 +496,4 @@ const usernameToUserDataMap = {
   },
 };
 
-export { usernames, usernameToUserDataMap };
+export { usernames, usernameToUserDataMap, psetSlugs };

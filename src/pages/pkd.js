@@ -135,9 +135,9 @@ const PKD = () => {
       },
       {
         id: "totalSolved",
-        label: "Total Terselesaikan",
+        label: "Total Skor",
         align: "center",
-        minWidth: 200,
+        minWidth: 100,
       },
       ...newColumns,
     ]);
@@ -179,7 +179,7 @@ const PKD = () => {
   };
 
   useEffect(() => {
-    document.title = "Pemrograman Dasar";
+    document.title = "Pemrograman Kompetitif Dasar";
     fetchPkdScoreboard();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -135,9 +135,9 @@ const PD = () => {
       },
       {
         id: "totalSolved",
-        label: "Total Terselesaikan",
+        label: "Total Skor",
         align: "center",
-        minWidth: 200,
+        minWidth: 100,
       },
       ...newColumns,
     ]);

@@ -12,7 +12,11 @@ const calcGreen = (solved, total) => {
 };
 
 const calcColor = (solved, total) => {
-  if (solved == 0) {
+  if (solved == null) {
+    return "#eee";
+  }
+
+  if (total == 0) {
     return "#eee";
   }
 
