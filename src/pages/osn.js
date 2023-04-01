@@ -190,7 +190,9 @@ const OSN = () => {
   };
 
   useEffect(() => {
+    document.title = "Arsip OSN/KSN";
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
