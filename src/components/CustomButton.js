@@ -14,7 +14,7 @@ const CustomButton = (props) => {
       data-aos-delay="100"
       data-aos-duration="900"
       size="large"
-      className={styles.button}
+      className={styles.landingbutton}
       sx={{
         width: "100%",
         height: "100%",

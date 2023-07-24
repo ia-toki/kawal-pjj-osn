@@ -1,4 +1,4 @@
-.button {
+.navbutton {
   color: white;
   transition: 0.3s;
   border-bottom: 3px solid transparent;
@@ -7,12 +7,12 @@
   text-align: center;
 }
 
-.button:hover {
+.navbutton:hover {
   border-bottom: 3px solid white;
   transition: 0.3s;
 }
 
-.button:disabled {
+.navbutton:disabled {
   transition: 0.3s;
   border-bottom: 3px solid rgb(241, 107, 17);
   border-left: 0;

@@ -23,21 +23,21 @@ const NavBar = () => {
       <Button
         onClick={() => router.push("/pd")}
         disabled={router.pathname === "/pd"}
-        className={styles.button}
+        className={styles.navbutton}
       >
         Pemrograman Dasar
       </Button>
       <Button
         onClick={() => router.push("/pkd")}
         disabled={router.pathname === "/pkd"}
-        className={styles.button}
+        className={styles.navbutton}
       >
         Pemrograman Kompetitif Dasar
       </Button>
       <Button
         onClick={() => router.push("/osn")}
         disabled={router.pathname === "/osn"}
-        className={styles.button}
+        className={styles.navbutton}
       >
         Arsip OSN/KSN
       </Button>
